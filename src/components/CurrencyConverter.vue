@@ -1,25 +1,34 @@
 <template>
   <div class="flex flex-col justify-center bg-purple-600">
     <div class="my-2">
-      <form action="/action_page.php">
-        <select v-model="currencyFrom" class="w-3/6 ml-2 text-xs py-1 px-1 rounded appearance-none bg-white border border-gray-400 hover:border-gray-500 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-          <option value="" selected>select</option>
+      <form action="#">
+        <select v-model="currencyFrom" @click="handler()" class="w-3/6 ml-2 text-xs py-1 px-1 rounded appearance-none bg-white border border-gray-400 hover:border-gray-500 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
           <option v-for="currency in currencies" :key="currency">{{currency}}</option>
         </select>
         <input class="appearance-none w-2/6 ml-2 bg-gray-200 text-xs text-gray-700 border border-gray-400 rounded py-1 px-1 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="0.00">
-        <label>{{currencyFrom}}</label>
+      <select v-model="currencyTo" @click="handler()" class="w-3/6 ml-2 text-xs py-1 px-1 rounded appearance-none bg-white border border-gray-400 hover:border-gray-500 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+          <option v-for="currency in currencies" :key="currency">{{currency}}</option>
+        </select>
+        <input class="appearance-none w-2/6 ml-2 bg-gray-200 text-xs text-gray-700 border border-gray-400 rounded py-1 px-1 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="0.00">
       </form>
     </div>
-    <p>{{someText}}</p>
+    <input type="text" v-model="currencyFrom">
+    <a href="#" v-for="currency in filteredList" :key="currency" @click="currencyFrom = currency">{{currency}}</a>
+
+    <!-- <input type="text" v-model="currencyTo">
+    <a href="#" v-for="currency in filteredList" :key="currency" @click="currencyTo = currency">{{currency}}</a> -->
+
+    <!-- <p>{{someText}}</p>
+    <span>Selected: {{ currencyFrom }}</span>
+    <span>Selected: {{ currencyTo }}</span> -->
     <button @click="handler()">submit</button>
   </div>
 </template>
 
 <script>
 const { BrowserWindow } = require('electron').remote
-// const Nightmare = require('nightmare')
-// const nightmare = Nightmare({ show: true })
-// const puppeteer = require('puppeteer')
+const got = require('got')
+const cheerio = require('cheerio')
 
 export default {
   name: 'CurrencyConverter',
@@ -59,18 +68,24 @@ export default {
     closeWindow: function () {
       BrowserWindow.getFocusedWindow().close()
     },
-    handler: function () {
-      const customWin = new BrowserWindow({ show: false })
-      customWin.loadURL('https://www.google.com/search?q=bdt+to+yen')
-      customWin.webContents.on('did-finish-load', () => {
-        // const code = 'a = document.getElementByClassName('iBp4i');'
-        // eslint-disable-next-line quotes
-        customWin.webContents.executeJavaScript(`document.getElementsByClassName('b1hJbf')[0].attributes[1].nodeValue`, function (result) {
-          this.someText = result
-          console.log(result)
-          console.log(this.someText)
-        })
-        // console.log(a)
+    handler: function (event) {
+      (async () => {
+        try {
+          const html = await got(`https://www.google.com/search?q=${this.currencyFrom}+to+${this.currencyTo}`)
+          const $ = cheerio.load(html.body)
+          let value = $('.iBp4i')
+          value = value.text().split(' ')[0]
+          this.someText = value
+        } catch (error) {
+          console.log(error.response.body)
+        }
+      })()
+    }
+  },
+  computed: {
+    filteredList () {
+      return this.currencies.filter(currency => {
+        return currency.toLowerCase().includes(this.currencyFrom.toLowerCase())
       })
     }
   },
