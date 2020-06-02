@@ -1,45 +1,34 @@
 <template>
-  <div class="flex justify-center bg-purple-600">
-    Hello World!
-   <p> hi <i class="cil-energy"></i> </p>
-
+  <div class="flex flex-col justify-center bg-purple-600">
+    <div class="my-2">
+      <form action="/action_page.php">
+        <select v-model="currencyFrom" class="w-3/6 ml-2 text-xs py-1 px-1 rounded appearance-none bg-white border border-gray-400 hover:border-gray-500 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+          <option value="" selected>select</option>
+          <option v-for="currency in currencies" :key="currency">{{currency}}</option>
+        </select>
+        <input class="appearance-none w-2/6 ml-2 bg-gray-200 text-xs text-gray-700 border border-gray-400 rounded py-1 px-1 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="0.00">
+        <label>{{currencyFrom}}</label>
+      </form>
+    </div>
+    <p>{{someText}}</p>
+    <button @click="handler()">submit</button>
   </div>
 </template>
 
 <script>
 const { BrowserWindow } = require('electron').remote
+// const Nightmare = require('nightmare')
+// const nightmare = Nightmare({ show: true })
+// const puppeteer = require('puppeteer')
 
 export default {
   name: 'CurrencyConverter',
   data () {
     return {
-      btn_group: [
-        { name: 'AC', key: 'Delete' },
-        { name: '(', key: '(' },
-        { name: ')', key: ')' },
-        { name: 'Del', key: 'Backspace' },
-        { name: '7', key: '7' },
-        { name: '8', key: '8' },
-        { name: '9', key: '9' },
-        { name: '/', key: '/' },
-        { name: '4', key: '4' },
-        { name: '5', key: '5' },
-        { name: '6', key: '6' },
-        { name: '*', key: '*' },
-        { name: '1', key: '1' },
-        { name: '2', key: '2' },
-        { name: '3', key: '3' },
-        { name: '-', key: '-' },
-        { name: '.', key: '.' },
-        { name: '0', key: '0' },
-        { name: '=', key: 'Enter' },
-        { name: '+', key: '+' }
-      ],
-      x: '',
-      checkEnter: false,
-      nums: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', '(', ')'],
-      operators: ['/', '*', '+', '-'],
-      result: 0
+      currencies: ['Afghan Afghani', 'Albanian Lek', 'Algerian Dinar', 'Angolan Kwanza', 'Argentine Peso', 'Armenian Dram', 'Aruban Florin', 'Australian Dollar', 'Azerbaijani Manat', 'Bahamian Dollar', 'Bahraini Dinar', 'Bajan dollar', 'Bangladeshi Taka', 'Belarusian Ruble', 'Belize Dollar', 'Bermudan Dollar', 'Bhutan currency', 'Bitcoin', 'Bitcoin Cash', 'Bolivian Boliviano', 'Bosnia-Herzegovina Convertible Mark', 'Botswanan Pula', 'Brazilian Real', 'Brunei Dollar', 'Bulgarian Lev', 'Burundian Franc', 'CFP Franc', 'Cambodian riel', 'Canadian Dollar', 'Cape Verdean Escudo', 'Cayman Islands Dollar', 'Central African CFA franc', 'Chilean Peso', 'Chilean Unit of Account (UF)', 'Chinese Yuan', 'Chinese Yuan (offshore)', 'Colombian Peso', 'Comorian franc', 'Congolese Franc', 'Costa Rican Colón', 'Croatian Kuna', 'Cuban Peso', 'Czech Koruna', 'Danish Krone', 'Djiboutian Franc', 'Dominican Peso', 'East Caribbean Dollar', 'Egyptian Pound', 'Ether', 'Ethiopian Birr', 'Euro', 'Fijian Dollar', 'Gambian dalasi', 'Georgian Lari', 'Ghanaian Cedi', 'Guatemalan Quetzal', 'Guinean Franc', 'Guyanaese Dollar', 'Haitian Gourde', 'Honduran Lempira', 'Hong Kong Dollar', 'Hungarian Forint', 'Icelandic Króna', 'Indian Rupee', 'Indonesian Rupiah', 'Iranian Rial', 'Iraqi Dinar', 'Israeli New Shekel', 'Jamaican Dollar', 'Japanese Yen', 'Jordanian Dinar', 'Kazakhstani Tenge', 'Kenyan Shilling', 'Kuwaiti Dinar', 'Kyrgystani Som', 'Laotian Kip', 'Lebanese pound', 'Lesotho loti', 'Liberian Dollar', 'Libyan Dinar', 'Litecoin', 'Macanese Pataca', 'Macedonian Denar', 'Malagasy Ariary', 'Malawian Kwacha', 'Malaysian Ringgit', 'Maldivian Rufiyaa', 'Mauritanian Ouguiya', 'Mauritian Rupee', 'Mexican Peso', 'Moldovan Leu', 'Moroccan Dirham', 'Mozambican metical', 'Myanmar Kyat', 'NT$', 'Namibian dollar', 'Nepalese Rupee', 'Netherlands Antillean Guilder', 'New Zealand Dollar', 'Nicaraguan Córdoba', 'Nigerian Naira', 'Norwegian Krone', 'Omani Rial', 'Pakistani Rupee', 'Panamanian Balboa', 'Papua New Guinean Kina', 'Paraguayan Guarani', 'Philippine peso', 'Poland złoty', 'Pound sterling', 'Qatari Rial', 'Romanian Leu', 'Russian Ruble', 'Rwandan franc', 'Salvadoran Colón', 'Saudi Riyal', 'Serbian Dinar', 'Seychellois Rupee', 'Sierra Leonean Leone', 'Singapore Dollar', 'Sol', 'Solomon Islands Dollar', 'Somali Shilling', 'South African Rand', 'South Korean won', 'Sovereign Bolivar', 'Sri Lankan Rupee', 'Sudanese pound', 'Surinamese Dollar', 'Swazi Lilangeni', 'Swedish Krona', 'Swiss Franc', 'Tajikistani Somoni', 'Tanzanian Shilling', 'Thai Baht', "Tongan Pa'anga", 'Trinidad and Tobago Dollar', 'Tunisian Dinar', 'Turkish lira', 'Turkmenistan manat', 'Ugandan Shilling', 'Ukrainian hryvnia', 'United Arab Emirates Dirham', 'United States Dollar', 'Uruguayan Peso', 'Uzbekistani Som', 'Vietnamese dong', 'West African CFA franc', 'Yemeni Rial', 'Zambian Kwacha'],
+      currencyFrom: '',
+      currencyTo: '',
+      someText: '0.0'
     }
   },
   mounted () {
@@ -70,27 +59,19 @@ export default {
     closeWindow: function () {
       BrowserWindow.getFocusedWindow().close()
     },
-    handler: function (event) {
-      const key = event.key
-      console.log(key)
-      if (this.nums.indexOf(key) > -1 || this.operators.indexOf(key) > -1) {
-        this.x += key
-      }
-
-      if (key === 'Backspace') {
-        this.x = this.x.slice(0, -1)
-        this.evaluate()
-      } else if (key === 'Enter' || this.nums.indexOf(key) > -1) {
-        this.evaluate()
-        if (key === 'Enter') {
-          this.x = this.result.toString()
-          this.result = ''
-          this.checkEnter = true
-        }
-      } else if (key === 'Delete') {
-        this.x = ''
-        this.result = 0
-      }
+    handler: function () {
+      const customWin = new BrowserWindow({ show: false })
+      customWin.loadURL('https://www.google.com/search?q=bdt+to+yen')
+      customWin.webContents.on('did-finish-load', () => {
+        // const code = 'a = document.getElementByClassName('iBp4i');'
+        // eslint-disable-next-line quotes
+        customWin.webContents.executeJavaScript(`document.getElementsByClassName('b1hJbf')[0].attributes[1].nodeValue`, function (result) {
+          this.someText = result
+          console.log(result)
+          console.log(this.someText)
+        })
+        // console.log(a)
+      })
     }
   },
   props: {

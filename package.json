@@ -16,8 +16,12 @@
   },
   "main": "background.js",
   "dependencies": {
+    "axios": "^0.19.2",
     "chai-as-promised": "^7.1.1",
+    "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.6.4",
+    "nightmare": "^3.0.2",
+    "puppeteer": "^3.2.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11"
   },
