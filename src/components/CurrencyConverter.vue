@@ -148,9 +148,6 @@ export default {
       BrowserWindow.getFocusedWindow().close()
     },
     handler: function () {
-      // if (inputID === 2 && this.currencyFrom.name === 'Select') {
-      //   this.currencyFrom.name = ''
-      // }
       if (this.currencies.includes(this.currencyFrom.name) && this.currencies.includes(this.currencyTo.name)) {
         if (parseInt(this.currencyFrom.value) === 0) {
           this.currencyTo.value = '0.00'
