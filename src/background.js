@@ -19,12 +19,13 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: tru
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    // width: 300,
-    // height: 200,
-    resizable: true,
-      // resizable: true,
+    width: 225,
+    // height: 402,
+    height: 500,
+    // resizable: true,
+    // resizable: true,
     // autoHideMenuBar: true,
-    // frame: false,
+    frame: false,
     transparent: true,
     icon: iconPath,
     // eslint-disable-next-line no-path-concat

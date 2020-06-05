@@ -1,10 +1,58 @@
 <template>
-  <div class="flex flex-col justify-center bg-indigo-600">
-    <div class="mt-4 ml-4 flex flex-col shadow-2xl w-56 rounded font-mono">
-  <div class="flex flex-col h-48 rounded-t flex-row bg-red-500 justify-center items-center">
+  <div class="flex items-center flex-col justify-center w-56 h-full">
+    <div class="flex flex-col bg-red-200 font-mono w-full h-full rounded-t" >
+      <div class="flex justify-end" style="-webkit-app-region: drag;">
+        <button class="no-outline" id="btn-minimize" style="-webkit-app-region: no-drag;" @click="minimize()">
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="w-2 h-4 fill-current text-blue-800" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+<g>
+  <path d="M492,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h472c11.046,0,20-8.954,20-20S503.046,236,492,236z"/>
+</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+        </button>
+        <button class="rounded-tr-lg no-outline" id="btn-close" style="-webkit-app-region: no-drag;" @click='closeWindow()'>
+          <svg class="h-4 w-4 fill-current text-red-200" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m416 512h-320c-53.023438 0-96-42.976562-96-96v-320c0-53.023438 42.976562-96 96-96h320c53.023438 0 96 42.976562 96 96v320c0 53.023438-42.976562 96-96 96zm0 0" /><g fill="#fc573b"><path d="m342.734375 312.574219-143.308594-143.308594c-6.257812-6.257813-16.386719-6.257813-22.625 0l-7.535156 7.535156c-6.257813 6.253907-6.257813 16.382813 0 22.625l143.308594 143.308594c6.257812 6.257813 16.386719 6.257813 22.625 0l7.535156-7.535156c6.257813-6.253907 6.257813-16.382813 0-22.625zm0 0"/><path d="m312.574219 169.265625-143.308594 143.308594c-6.257813 6.257812-6.257813 16.386719 0 22.625l7.535156 7.535156c6.253907 6.257813 16.382813 6.257813 22.625 0l143.308594-143.308594c6.257813-6.257812 6.257813-16.386719 0-22.625l-7.535156-7.535156c-6.253907-6.257813-16.382813-6.257813-22.625 0zm0 0"/></g></svg>
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col w-56 rounded font-mono">
+  <div class="flex flex-col h-48 flex-row bg-red-500 justify-center items-center">
     <div class="w-3/6">
       <input class="text-3xl block bg-red-500 text-white outline-none rounded-lg block w-full appearance-none leading-normal text-center placeholder-gray-100"
-      v-model="currencyFrom.value" @keydown="handler()" type="text" placeholder="0.00">
+      v-model="currencyFrom.value" @keyup="handler()" @click="handler()" type="text" placeholder="0.00">
       <hr>
     </div>
     <div class="w-3/6 pt-5">
@@ -18,59 +66,29 @@
       <hr>
     </div>
     <div class="self-start mt-24 pl-3 absolute">
-      <button class="block rounded bg-red-100 shadow-xl focus:outline-none hover:bg-red-300">
+      <button @click="switchhandler()" class="block rounded bg-red-100 shadow-xl focus:outline-none hover:bg-red-300">
         <svg class="p-1 w-8 h-8 fill-current hover:text-gray-100 text-red-400" id="Layer" enable-background="new 0 0 64 64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="m31.414 15.586-7-7c-.78-.781-2.048-.781-2.828 0l-7 7c-.781.781-.781 2.047 0 2.828.78.781 2.048.781 2.828 0l3.586-3.586v39.172c0 1.104.896 2 2 2s2-.896 2-2v-39.172l3.586 3.586c.39.391.902.586 1.414.586s1.024-.195 1.414-.586c.781-.781.781-2.047 0-2.828z"/><path d="m46.586 45.586-3.586 3.586v-39.172c0-1.104-.896-2-2-2s-2 .896-2 2v39.172l-3.586-3.586c-.78-.781-2.048-.781-2.828 0-.781.781-.781 2.047 0 2.828l7 7c.39.391.902.586 1.414.586s1.024-.195 1.414-.586l7-7c.781-.781.781-2.047 0-2.828-.78-.781-2.048-.781-2.828 0z"/></svg>
       </button>
     </div>
   </div>
   <div class="flex flex-col h-48 rounded-b flex-row bg-gray-100 justify-center items-center" style="caret-color:rgba(252,129,129,1)">
     <div class="w-3/6">
-      <input class="text-3xl block bg-gray-100 text-red-400 outline-none rounded-lg block w-full appearance-none tracking-tighter leading-normal text-center placeholder-red-400"
-      v-model="currencyTo.value" type="text" placeholder="0.00">
+      <p class="text-3xl block bg-gray-100 text-red-400 outline-none rounded-lg block w-full appearance-none tracking-tighter leading-normal text-center"
+      type="text">{{currencyTo.value}}</p>
       <hr>
     </div>
     <div class="w-3/6 pt-5">
-      <input class="block bg-gray-100 text-red-400 outline-none rounded-lg block w-full appearance-none leading-normal text-center placeholder-red-400"
+      <input class="tracking-tighter block bg-gray-100 text-red-400 outline-none rounded-lg block w-full appearance-none leading-normal text-center placeholder-red-400"
       v-model="currencyTo.name" @click="currencyTo.isHidden = !currencyTo.isHidden"
       type="text" placeholder="Currency to">
       <button v-if="currencyTo.isHidden" @click="currencyTo.isHidden = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
-      <div v-show='currencyTo.isHidden' class="mt-1 w-32 absolute rounded shadow-xl bg-white overflow-hidden" :class="{'h-10': currencyTo.heightOverflow}" style="overflow-y:auto">
+      <div v-show='currencyTo.isHidden' class=" mt-1 w-32 absolute rounded shadow-xl bg-white overflow-hidden" :class="{'h-10': currencyTo.heightOverflow}" style="overflow-y:auto">
         <a href="#" class="block text-xs py-1 px-2 hover:bg-red-300" v-for="currency in filteredListTo" :key="currency" @click="currencyTo.name = currency; currencyTo.isHidden = !currencyTo.isHidden">{{currency}}</a>
       </div>
       <hr>
     </div>
   </div>
 </div>
-    <div class="flex">
-      <!-- <div class="w-3/6 justify-center mx-2">
-        <input type="text" class="text-xs rounded overflow-hidden" v-model="currencyFrom.name" @click="currencyFrom.isHidden = !currencyFrom.isHidden">
-        <button v-if="currencyFrom.isHidden" @click="currencyFrom.isHidden = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
-        <div v-show='currencyFrom.isHidden' class="absolute rounded-lg shadow-xl bg-white overflow-hidden" :class="{'h-20': currencyFrom.heightOverflow}" style="overflow-y:auto">
-          <a href="#" class="block text-xs py-1 px-2 hover:bg-gray-100" v-for="currency in filteredListFrom" :key="currency" @click="currencyFrom.name = currency; currencyFrom.isHidden = !currencyFrom.isHidden">{{currency}}</a>
-        </div>
-      </div> -->
-
-      <div class="w-2/6 mr-2">
-        <input type="text" class="text-xs rounded w-full" :placeholder="currencyFrom.value">
-      </div>
-    </div>
-    <div class="flex">
-      <div class="w-3/6 justify-center mx-2">
-        <!-- <input type="text" class="text-xs rounded overflow-hidden" v-model="currencyTo.name" @click="currencyTo.isHidden = !currencyTo.isHidden">
-        <button v-if="currencyTo.isHidden" @click="currencyTo.isHidden = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
-      <div v-show='currencyTo.isHidden' class="absolute rounded-lg shadow-xl bg-white overflow-hidden" :class="{'h-20': currencyTo.heightOverflow}" style="overflow-y:auto">
-        <a href="#" class="block text-xs py-1 px-2 hover:bg-gray-100" v-for="currency in filteredListTo" :key="currency" @click="currencyTo.name = currency; currencyTo.isHidden = !currencyTo.isHidden">{{currency}}</a>
-      </div> -->
-    </div>
-
-      <div class="w-2/6 mr-2">
-        <input type="text" class="text-xs rounded w-full" :placeholder="currencyTo.value">
-      </div>
-    </div>
-    {{currencyFrom.name}}
-    {{currencyTo.name}}
-    <button @click = "handler()">submit</button>
-
   </div>
 </template>
 
@@ -83,7 +101,7 @@ export default {
   name: 'CurrencyConverter',
   data () {
     return {
-      currencies: ['Afghan Afghani', 'Albanian Lek', 'Algerian Dinar', 'Angolan Kwanza', 'Argentine Peso', 'Armenian Dram', 'Aruban Florin', 'Australian Dollar', 'Azerbaijani Manat', 'Bahamian Dollar', 'Bahraini Dinar', 'Bajan dollar', 'Bangladeshi Taka', 'Belarusian Ruble', 'Belize Dollar', 'Bermudan Dollar', 'Bhutan currency', 'Bitcoin', 'Bitcoin Cash', 'Bolivian Boliviano', 'Bosnia-Herzegovina Convertible Mark', 'Botswanan Pula', 'Brazilian Real', 'Brunei Dollar', 'Bulgarian Lev', 'Burundian Franc', 'CFP Franc', 'Cambodian riel', 'Canadian Dollar', 'Cape Verdean Escudo', 'Cayman Islands Dollar', 'Central African CFA franc', 'Chilean Peso', 'Chilean Unit of Account (UF)', 'Chinese Yuan', 'Chinese Yuan (offshore)', 'Colombian Peso', 'Comorian franc', 'Congolese Franc', 'Costa Rican Colón', 'Croatian Kuna', 'Cuban Peso', 'Czech Koruna', 'Danish Krone', 'Djiboutian Franc', 'Dominican Peso', 'East Caribbean Dollar', 'Egyptian Pound', 'Ether', 'Ethiopian Birr', 'Euro', 'Fijian Dollar', 'Gambian dalasi', 'Georgian Lari', 'Ghanaian Cedi', 'Guatemalan Quetzal', 'Guinean Franc', 'Guyanaese Dollar', 'Haitian Gourde', 'Honduran Lempira', 'Hong Kong Dollar', 'Hungarian Forint', 'Icelandic Króna', 'Indian Rupee', 'Indonesian Rupiah', 'Iranian Rial', 'Iraqi Dinar', 'Israeli New Shekel', 'Jamaican Dollar', 'Japanese Yen', 'Jordanian Dinar', 'Kazakhstani Tenge', 'Kenyan Shilling', 'Kuwaiti Dinar', 'Kyrgystani Som', 'Laotian Kip', 'Lebanese pound', 'Lesotho loti', 'Liberian Dollar', 'Libyan Dinar', 'Litecoin', 'Macanese Pataca', 'Macedonian Denar', 'Malagasy Ariary', 'Malawian Kwacha', 'Malaysian Ringgit', 'Maldivian Rufiyaa', 'Mauritanian Ouguiya', 'Mauritian Rupee', 'Mexican Peso', 'Moldovan Leu', 'Moroccan Dirham', 'Mozambican metical', 'Myanmar Kyat', 'NT$', 'Namibian dollar', 'Nepalese Rupee', 'Netherlands Antillean Guilder', 'New Zealand Dollar', 'Nicaraguan Córdoba', 'Nigerian Naira', 'Norwegian Krone', 'Omani Rial', 'Pakistani Rupee', 'Panamanian Balboa', 'Papua New Guinean Kina', 'Paraguayan Guarani', 'Philippine peso', 'Poland złoty', 'Pound sterling', 'Qatari Rial', 'Romanian Leu', 'Russian Ruble', 'Rwandan franc', 'Salvadoran Colón', 'Saudi Riyal', 'Serbian Dinar', 'Seychellois Rupee', 'Sierra Leonean Leone', 'Singapore Dollar', 'Sol', 'Solomon Islands Dollar', 'Somali Shilling', 'South African Rand', 'South Korean won', 'Sovereign Bolivar', 'Sri Lankan Rupee', 'Sudanese pound', 'Surinamese Dollar', 'Swazi Lilangeni', 'Swedish Krona', 'Swiss Franc', 'Tajikistani Somoni', 'Tanzanian Shilling', 'Thai Baht', "Tongan Pa'anga", 'Trinidad and Tobago Dollar', 'Tunisian Dinar', 'Turkish lira', 'Turkmenistan manat', 'Ugandan Shilling', 'Ukrainian hryvnia', 'United Arab Emirates Dirham', 'United States Dollar', 'Uruguayan Peso', 'Uzbekistani Som', 'Vietnamese dong', 'West African CFA franc', 'Yemeni Rial', 'Zambian Kwacha'],
+      currencies: ['Afghan Afghani - AFN', 'Albanian Lek - ALL', 'Algerian Dinar - DZD', 'Angolan Kwanza - AOA', 'Argenti ne Peso - ARS', 'Armenian Dram - AMD', 'Aruban Florin - AWG', 'Australian Dollar - AUD', 'Azerbaijani M anat - AZN', 'Bahamian Dollar - BSD', 'Bahraini Dinar - BHD', 'Bajan Dollar - BBD', 'Bangladeshi Taka - BDT', 'Belarusian Ruble - BYR', 'Belize Dollar - BZD', 'Bermudan Dollar - BMD', 'Bhutan currency - BTN ', 'Bitcoin Cash - XBT', 'Bolivian Boliviano - BOB', 'Bosnia-Herzegovina Convertible Mark - BAM', 'Bots wanan Pula - BWP', 'Brazilian Real - BRL', 'Brunei Dollar - BND', 'Bulgarian Lev - BGN', 'Burundian Fra nc - BIF', 'CFP Franc - XPF', 'Cambodian riel - KHR', 'Canadian Dollar - CAD', 'Cape Verdean Escudo - C VE', 'Cayman Islands Dollar - KYD', 'Central African CFA Franc - FCFA', 'Chilean Peso - CLP', 'Chilean Unit of Account (UF) - CLF', 'Chinese Yuan - CNY', 'Chinese Yuan (offshore) - CNY', 'Colombian Peso - C OP', 'Comorian Franc - CF', 'Congolese Franc - CDF', 'Costa Rican Colón - CRC', 'Croatian Kuna - HRK', 'Cuban Peso - CUC', 'Czech Koruna - CZK', 'Danish Krone - DKK', 'Djiboutian Franc - DJF', 'Dominican Pe so - DOP', 'East Caribbean Dollar - XCD', 'Egyptian Pound - EGP', 'Ethiopian Birr - ETB', 'Fijian Dolla r - FJD', 'Gambian dalasi - GMD', 'Georgian Lari - GEL', 'Ghanaian Cedi - GHS', 'Guatemalan Quetzal - G TQ', 'Guinean Franc - GNF', 'Guyanaese Dollar - GYD', 'Haitian Gourde - HTG', 'Honduran Lempira - HNL', 'Hong Kong Dollar - HKD', 'Hungarian Forint - HUF', 'Icelandic Króna - ISK', 'Indian Rupee - INR', 'In donesian Rupiah - IDR', 'Iranian Rial - IRR', 'Iraqi Dinar - IQD', 'Israeli New Shekel - ILS', 'Jamaica n Dollar - JMD', 'Japanese Yen - JPY', 'Jordanian Dinar - JOD', 'Kazakhstani Tenge - KZT', 'Kenyan Shil ling - KES', 'Kuwaiti Dinar - KWD', 'Kyrgystani Som - KGS', 'Laotian Kip - LAK', 'Lebanese pound - LBP', 'Lesotho Loti - LSL', 'Liberian Dollar - LRD', 'Libyan Dinar - LYD', 'Macanese Pataca - MOP', 'Macedo nian Denar - MKD', 'Malagasy Ariary - MGA', 'Malawian Kwacha - MWK', 'Malaysian Ringgit - MYR', 'Maldiv ian Rufiyaa - MVR', 'Mauritanian Ouguiya - MRO', 'Mauritian Rupee - MUR', 'Mexican Peso - MXN', 'Moldov an Leu - MDL', 'Moroccan Dirham - MAD', 'Mozambican metical - MZN', 'Myanmar Kyat - MMK', 'Namibian dol lar - NAD', 'Nepalese Rupee - NPR', 'Netherlands Antillean Guilder - ANG', 'New Zealand Dollar - NZD', 'Nicaraguan Córdoba - NIO', 'Nigerian Naira - NGN', 'Norwegian Krone - NOK', 'Omani Rial - OMR', 'Pakis tani Rupee - PKR', 'Panamanian Balboa - PAB', 'Papua New Guinean Kina - PGK', 'Paraguayan Guarani - PYG ', 'Philippine peso - PHP', 'Poland Złoty - PLN', 'Pound sterling - EGP', 'Qatari Rial - QAR', 'Romania n Leu - RON', 'Russian Ruble - RUB', 'Rwandan franc - RWF', 'Salvadoran Colón - SVC', 'Saudi Riyal - SA R', 'Serbian Dinar - RSD', 'Seychellois Rupee - SCR', 'Sierra Leonean Leone - SLL', 'Singapore Dollar - SGD', 'Solomon Islands Dollar - SBD', 'Somali Shilling - SOS', 'South African Rand - ZAR', 'South Kore an won - KRW', 'Sovereign Bolivar - VES', 'Sri Lankan Rupee - LKR', 'Sudanese pound - SDG', 'Surinamese Dollar - SRD', 'Swazi Lilangeni - SZL', 'Swedish Krona - SEK', 'Swiss Franc - CHF', 'Tajikistani Somon i - TJS', 'Tanzanian Shilling - TZS', 'Thai Baht - THB', "Tongan Pa'anga - TOP", 'Trinidad and Tobago D ollar - TTD', 'Tunisian Dinar - TND', 'Turkish lira - TRY', 'Turkmenistan manat - TMT', 'Ugandan Shilli ng - UGX', 'Ukrainian hryvnia - UAH', 'United Arab Emirates Dirham - AED', 'United States Dollar - USD', 'Uruguayan Peso - UYU', 'Uzbekistani Som - UZS', 'Vietnamese dong - VND', 'West African CFA franc - X OF', 'Yemeni Rial - YER', 'Zambian Kwacha - ZMW', 'Bitcoin - XBT', 'Ether - ETH', 'Euro - EUR', 'Liteco in - LTC', 'NT$ - TWD', 'Peruvian Sol - PEN'],
       currencyFrom: {
         name: '',
         value: '0.00',
@@ -133,6 +151,8 @@ export default {
       if (this.currencies.includes(this.currencyFrom.name) && this.currencies.includes(this.currencyTo.name)) {
         if (parseInt(this.currencyFrom.value) === 0) {
           this.currencyTo.value = '0.00'
+        } else if (this.currencyFrom.name === this.currencyTo.name) {
+          this.currencyTo.value = this.currencyFrom.value
         } else {
           (async () => {
             try {
@@ -140,7 +160,7 @@ export default {
               const $ = cheerio.load(html.body)
               let value = $('.iBp4i')
               value = value.text().split(' ')[0]
-              this.currencyTo.value = parseInt(this.currencyFrom.value) * value
+              this.currencyTo.value = (isNaN(parseFloat(this.currencyFrom.value)) ? 0 : parseFloat(this.currencyFrom.value) * value).toFixed(2)
             } catch (error) {
               console.log(error.response.body)
             }
@@ -149,7 +169,9 @@ export default {
       }
     },
     switchhandler: function () {
-      console.log('Hello')
+      const temp = this.currencyFrom
+      this.currencyFrom = this.currencyTo
+      this.currencyTo = temp
     }
   },
   computed: {
