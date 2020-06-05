@@ -4,9 +4,11 @@
   <h1>Currency converter app built with vuejs and electronjs</h1>
 
   
-  [![Build Status](https://travis-ci.com/paul-shuvo/currency-converter.svg?branch=master)](https://travis-ci.com/paul-shuvo/currency-converter) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a96a8f7135fd4ddc956e77bf2fad1f93)](https://www.codacy.com/manual/paul-shuvo/currency-converter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=paul-shuvo/currency-converter&amp;utm_campaign=Badge_Grade) ![Total downloads](https://img.shields.io/github/downloads/paul-shuvo/currency-converter/total)  ![](https://img.shields.io/github/license/paul-shuvo/currency-converter) <a href="https://www.flaticon.com/authors/freepik">![using freepik](https://img.shields.io/badge/using-freepik-brightgreen)</a>
+  [![Build Status](https://travis-ci.com/paul-shuvo/currency-converter.svg?branch=master)](https://travis-ci.com/paul-shuvo/currency-converter) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a96a8f7135fd4ddc956e77bf2fad1f93)](https://www.codacy.com/manual/paul-shuvo/currency-converter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=paul-shuvo/currency-converter&amp;utm_campaign=Badge_Grade)  ![](https://img.shields.io/github/license/paul-shuvo/currency-converter) <a href="https://www.flaticon.com/authors/freepik">![using freepik](https://img.shields.io/badge/using-freepik-brightgreen)</a>
 
   <img src="https://i.imgur.com/mUGBXiI.gif" alt="drawing" width="200"/>
+  
+  ### [Download](https://github.com/paul-shuvo/currency-converter/releases)
 </div>
 
 ## Getting started
