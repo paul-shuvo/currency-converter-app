@@ -20,6 +20,7 @@ function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
     width: 225,
+    title: 'Currency Converter',
     // height: 402,
     height: 500,
     resizable: false,
@@ -34,6 +35,9 @@ function createWindow () {
     }
   })
 
+  win.webContents.on('did-finish-load', () => {
+    win.setTitle('Currency Converter')
+  })
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)

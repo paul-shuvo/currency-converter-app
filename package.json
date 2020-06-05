@@ -1,5 +1,7 @@
 {
-  "name": "calculator",
+  "name": "currency-converter",
+  "productName": "Currency Converter",
+  "description": "A simple currency converter made using electronjs and vuejs",
   "author": "Shuvo Kumar Paul",
   "email": "shuvo.k.paul@gmail.com",
   "version": "0.1.0",
