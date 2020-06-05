@@ -22,7 +22,7 @@ function createWindow () {
     width: 225,
     // height: 402,
     height: 500,
-    // resizable: true,
+    resizable: false,
     // resizable: true,
     // autoHideMenuBar: true,
     frame: false,

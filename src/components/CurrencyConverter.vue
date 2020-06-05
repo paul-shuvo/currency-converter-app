@@ -61,7 +61,7 @@
       type="text" placeholder="Currency from">
       <button v-if="currencyFrom.isHidden" @click="currencyFrom.isHidden = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
       <div v-show='currencyFrom.isHidden' class="mt-1 absolute rounded w-32 shadow-xl bg-white overflow-hidden" :class="{'h-10': currencyFrom.heightOverflow}" style="overflow-y:auto">
-        <a href="#" class="block text-xs py-1 px-2 hover:bg-gray-100" v-for="currency in filteredListFrom" :key="currency" @click="currencyFrom.name = currency; currencyFrom.isHidden = !currencyFrom.isHidden">{{currency}}</a>
+        <a href="#" class="block text-xs py-1 px-2 hover:bg-gray-100" v-for="currency in filteredListFrom" :key="currency" @click="currencyFrom.name = currency; currencyFrom.isHidden = !currencyFrom.isHidden; handler()">{{currency}}</a>
       </div>
       <hr>
     </div>
@@ -83,7 +83,7 @@
       type="text" placeholder="Currency to">
       <button v-if="currencyTo.isHidden" @click="currencyTo.isHidden = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
       <div v-show='currencyTo.isHidden' class=" mt-1 w-32 absolute rounded shadow-xl bg-white overflow-hidden" :class="{'h-10': currencyTo.heightOverflow}" style="overflow-y:auto">
-        <a href="#" class="block text-xs py-1 px-2 hover:bg-red-300" v-for="currency in filteredListTo" :key="currency" @click="currencyTo.name = currency; currencyTo.isHidden = !currencyTo.isHidden">{{currency}}</a>
+        <a href="#" class="block text-xs py-1 px-2 hover:bg-red-300" v-for="currency in filteredListTo" :key="currency" @click="currencyTo.name = currency; currencyTo.isHidden = !currencyTo.isHidden; handler()">{{currency}}</a>
       </div>
       <hr>
     </div>
