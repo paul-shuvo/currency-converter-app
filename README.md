@@ -23,7 +23,7 @@ $ git clone https://github.com/paul-shuvo/currency-converter.git
 ### Install packages
 
 ```bash
-$ cd electron-vue-calculator
+$ cd currency-converter
 $ yarn install 
 ```
 
