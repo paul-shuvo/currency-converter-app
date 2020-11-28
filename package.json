@@ -20,7 +20,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "got": "^11.2.0",
-    "core-js": "^3.6.4",
+    "core-js": "^3.7.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11"
   },
